@@ -7,8 +7,9 @@ input_file = open("data.csv", "r")
 workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
 
 data = input_file.read()
-
 accounts = []
+investment = 0
+
 
 for rows in data.split("\n"):
     account_info = []
@@ -23,9 +24,27 @@ title_format = workbook.add_format({'bold': True, 'font_size': 18})
 worksheet.set_column('B:B', 20)
 worksheet.write('A1', 'Financial Report', title_format)
 worksheet.write('D1', currentDate(), title_format)
+
 worksheet.write('E1', RETIREDATE, title_format)
 worksheet.write('E2', 500000, dollar_format)
 
+
+#Calculate Investments
+for rows in accounts:
+    if rows[0] == "Merril Edge Investments":
+        investment += float(rows[1])
+    if rows[0] == "TIAA 403K":
+        investment += float(rows[1])
+    if rows[0] == "Baylor 401K":
+        investment += float(rows[1])
+    if rows[0] == "Nokia 401K":
+        investment += float(rows[1])
+    if rows[0] == "Robinhood":
+        investment += float(rows[1])
+        
+worksheet.write('D2', investment, dollar_format)
+
+        
 
 rowNumber = 4 
 for rows in accounts:
@@ -41,6 +60,8 @@ for rows in accounts:
     except (IndexError, ValueError):
         worksheet.write(rowNumber ,columnNumber + 2,-1)
     rowNumber += 1
+
+
 
 workbook.close()
 input_file.close()
