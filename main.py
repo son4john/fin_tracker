@@ -9,6 +9,7 @@ workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
 data = input_file.read()
 accounts = []
 investment = 0
+debt = 0
 
 
 for rows in data.split("\n"):
@@ -27,9 +28,9 @@ worksheet.write('D1', currentDate(), title_format)
 
 worksheet.write('E1', RETIREDATE, title_format)
 worksheet.write('E2', 500000, dollar_format)
+worksheet.write('E3', 0, dollar_format)
 
-
-#Calculate Investments
+#Calculate Investments, Debt
 for rows in accounts:
     if rows[0] == "Merril Edge Investments":
         investment += float(rows[1])
@@ -41,9 +42,17 @@ for rows in accounts:
         investment += float(rows[1])
     if rows[0] == "Robinhood":
         investment += float(rows[1])
-        
+    if rows[0] == "Bestbuy Credit":
+        debt += float(rows[1])
+    if rows[0] == "Samsung Credit":
+        debt += float(rows[1])
+    if rows[0] == "Granbury Loan":
+        debt += float(rows[1])
+    if rows[0] == "Auburn Hills Loan":
+        debt += float(rows[1])
+                
 worksheet.write('D2', investment, dollar_format)
-
+worksheet.write('D3', debt, dollar_format)
         
 
 rowNumber = 4 
