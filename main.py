@@ -10,7 +10,8 @@ data = input_file.read()
 accounts = []
 investment = 0
 debt = 0
-
+income = 0
+expense = 0
 
 for rows in data.split("\n"):
     account_info = []
@@ -22,15 +23,25 @@ worksheet = workbook.add_worksheet('Summary')
 
 dollar_format = workbook.add_format({'num_format': '$#,##0.00'})
 title_format = workbook.add_format({'bold': True, 'font_size': 18})
+subtitle_format = workbook.add_format({'italic': True, 'font_size': 13})
 worksheet.set_column('B:B', 20)
+
+#Titles
 worksheet.write('A1', 'Financial Report', title_format)
-worksheet.write('D1', currentDate(), title_format)
+worksheet.write('C4', 'Current', subtitle_format)
+worksheet.write('D4', 'Change', subtitle_format)
+worksheet.write('G5', 'Total Current Debt', subtitle_format)
+worksheet.write('G6', 'Yearly Projected Income', subtitle_format)
 
-worksheet.write('E1', RETIREDATE, title_format)
+
 worksheet.write('E2', 500000, dollar_format)
-worksheet.write('E3', 0, dollar_format)
+worksheet.write('D1', currentDate(), title_format)
+worksheet.write('E1', RETIREDATE, title_format)
 
-#Calculate Investments, Debt
+
+
+
+#Calculate Investments, Debt, Income, Expenses
 for rows in accounts:
     if rows[0] == "Merril Edge Investments":
         investment += float(rows[1])
@@ -50,10 +61,21 @@ for rows in accounts:
         debt += float(rows[1])
     if rows[0] == "Auburn Hills Loan":
         debt += float(rows[1])
-                
+    if rows[0] == "Bank of America Credit":
+        debt += float(rows[1])
+    if rows[0] == "Discover Credit":
+        debt += float(rows[1])        
+    if rows[0] == "Baylor Income":
+        income += float(rows[1])
+    if rows[0] == "VectorNav Income":
+        income += float(rows[1])
+    if rows[0] == "Granbury Income":
+        income += float(rows[1])
+income *= 12                
+    
 worksheet.write('D2', investment, dollar_format)
-worksheet.write('D3', debt, dollar_format)
-        
+worksheet.write('H5', debt, dollar_format)
+worksheet.write('H6', income, dollar_format)        
 
 rowNumber = 4 
 for rows in accounts:
