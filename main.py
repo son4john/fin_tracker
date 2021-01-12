@@ -12,6 +12,8 @@ investment = 0
 debt = 0
 income = 0
 expense = 0
+credit = 0
+cash = 0
 
 for rows in data.split("\n"):
     account_info = []
@@ -30,52 +32,86 @@ worksheet.set_column('B:B', 20)
 worksheet.write('A1', 'Financial Report', title_format)
 worksheet.write('C4', 'Current', subtitle_format)
 worksheet.write('D4', 'Change', subtitle_format)
-worksheet.write('G5', 'Total Current Debt', subtitle_format)
-worksheet.write('G6', 'Yearly Projected Income', subtitle_format)
+worksheet.write('G5', 'Total Current Cash', subtitle_format)
+worksheet.write('G6', 'Total Current Debt', subtitle_format)
+worksheet.write('G7', 'Yearly Projected Income', subtitle_format)
+worksheet.write('G8', 'Yearly Projected Expenses', subtitle_format)
 
 
-worksheet.write('E2', 500000, dollar_format)
-worksheet.write('D1', currentDate(), title_format)
-worksheet.write('E1', RETIREDATE, title_format)
-
-
-
-
-#Calculate Investments, Debt, Income, Expenses
+#Calculate Investments, Debt, Income, Expenses, Cash
+#maybe break this appart once we get everything straightend out
+#also maybe group these things together when we output or store in memory
 for rows in accounts:
     if rows[0] == "Merril Edge Investments":
         investment += float(rows[1])
-    if rows[0] == "TIAA 403K":
+    elif rows[0] == "TIAA 403K":
         investment += float(rows[1])
-    if rows[0] == "Baylor 401K":
+    elif rows[0] == "Baylor 401K":
         investment += float(rows[1])
-    if rows[0] == "Nokia 401K":
+    elif rows[0] == "Nokia 401K":
         investment += float(rows[1])
-    if rows[0] == "Robinhood":
+    elif rows[0] == "Robinhood":
         investment += float(rows[1])
-    if rows[0] == "Bestbuy Credit":
+    elif rows[0] == "Bestbuy Credit":
         debt += float(rows[1])
-    if rows[0] == "Samsung Credit":
+    elif rows[0] == "Samsung Credit":
         debt += float(rows[1])
-    if rows[0] == "Granbury Loan":
+    elif rows[0] == "Granbury Loan":
         debt += float(rows[1])
-    if rows[0] == "Auburn Hills Loan":
+    elif rows[0] == "Auburn Hills Loan":
         debt += float(rows[1])
-    if rows[0] == "Bank of America Credit":
+    elif rows[0] == "Bank of America Credit":
         debt += float(rows[1])
-    if rows[0] == "Discover Credit":
+    elif rows[0] == "Discover Credit":
         debt += float(rows[1])        
-    if rows[0] == "Baylor Income":
-        income += float(rows[1])
-    if rows[0] == "VectorNav Income":
-        income += float(rows[1])
-    if rows[0] == "Granbury Income":
-        income += float(rows[1])
-income *= 12                
-    
+    elif rows[0] == "Baylor Income":
+        income += float(rows[1])*12
+    elif rows[0] == "VectorNav Income":
+        income += float(rows[1])*12
+    elif rows[0] == "Granbury Income":
+        income += float(rows[1])*12
+    elif rows[0] == "Discover Checking":
+        cash += float(rows[1])
+    elif rows[0] == "Discover Rewards":
+        cash += float(rows[1])
+    elif rows[0] == "Bank Of America Savings":
+        cash += float(rows[1])
+    elif rows[0] == "Bank Of America Checking":
+        cash += float(rows[1])
+    elif rows[0] == "Coinbase Crypto":
+        investment += float(rows[1])
+    elif rows[0] == "Uphold Currency":
+        investment += float(rows[1])
+    elif rows[0] == "TXU Energy":
+        expense += float(rows[1])*12
+    elif rows[0] == "ATT Internet":
+        expense += float(rows[1])*12
+    elif rows[0] == "Sunnyvale Utilities":
+        expense += float(rows[1])*12
+    elif rows[0] == "Atmos Energy":
+        expense += float(rows[1])*12
+    elif rows[0] == "MS Office":
+        expense += float(rows[1])*12
+    elif rows[0] == "Netflix":
+        expense += float(rows[1])*12
+    elif rows[0] == "Fitness Connection":
+        expense += float(rows[1])*12
+    elif rows[0] == "Spotify":
+        expense += float(rows[1])*12
+    else:
+        print("Failed to Find: " + rows[0])
+        
+              
+
+worksheet.write('D1', currentDate(), title_format)
+worksheet.write('E1', RETIREDATE, title_format)    
 worksheet.write('D2', investment, dollar_format)
-worksheet.write('H5', debt, dollar_format)
-worksheet.write('H6', income, dollar_format)        
+worksheet.write('H5', cash, dollar_format)
+worksheet.write('H6', debt, dollar_format)
+worksheet.write('H7', income, dollar_format)
+worksheet.write('H8', expense, dollar_format)
+worksheet.write('E2', 500000, dollar_format)
+
 
 rowNumber = 4 
 for rows in accounts:
