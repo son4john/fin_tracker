@@ -1,0 +1,3 @@
+cash,100
+debt,-10
+invest,1000
