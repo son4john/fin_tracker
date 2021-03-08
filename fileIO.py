@@ -5,6 +5,6 @@ def readLog():
 	return data
 
 def writeLog(data):
-	f = open("data_log.txt", "a")
+	f = open("data_log.txt", "w")
 	f.write(data)
 	f.close()
