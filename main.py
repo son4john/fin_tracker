@@ -4,14 +4,9 @@ import fileIO
 from myDateTime import currentDate
 from myDateTime import RETIREDATE
 
-last_stats_read = readLog()
 input_file = open("data.csv", "r")
 workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
 
-stats_value [] = parseStats()
-
-for i in stat:
-	print i 
 
 data = input_file.read()
 accounts = []
