@@ -104,9 +104,6 @@ for rows in accounts:
     else:
         print("Failed to Find: " + rows[0])
         
-              
-cash_change = cash - float(last_stats[0])
-debt_change = debt - float(last_stats[1])
 
 
 worksheet.write('D1', currentDate(), title_format)
@@ -117,11 +114,7 @@ worksheet.write('H6', debt, dollar_format)
 worksheet.write('H7', income, dollar_format)
 worksheet.write('H8', expense, dollar_format)
 worksheet.write('E2', 500000, dollar_format)
-worksheet.write('K5', cash_change, dollar_format)
-worksheet.write('K6', debt_change, dollar_format)
 
-
-fileIO.writeLog(str(cash) + "\n" + str(debt) + "\n")
 
 
 rowNumber = 4 
