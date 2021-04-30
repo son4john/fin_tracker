@@ -7,10 +7,6 @@ from myDateTime import RETIREDATE
 input_file = open("data.csv", "r")
 workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
 
-#Previous Reports Values
-last_stats_read = fileIO.readLog()
-last_stats = last_stats_read.split("\n")
-
 data = input_file.read()
 accounts = []
 investment = 0
