@@ -7,7 +7,6 @@ from myDateTime import RETIREDATE
 input_file = open("data.csv", "r")
 workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
 
-
 data = input_file.read()
 accounts = []
 investment = 0
@@ -38,6 +37,8 @@ worksheet.write('G5', 'Total Current Cash', subtitle_format)
 worksheet.write('G6', 'Total Current Debt', subtitle_format)
 worksheet.write('G7', 'Yearly Projected Income', subtitle_format)
 worksheet.write('G8', 'Yearly Projected Expenses', subtitle_format)
+worksheet.write('J5', "Cash Change", subtitle_format)
+worksheet.write('J6', "Debt Change", subtitle_format)
 
 
 #Calculate Investments, Debt, Income, Expenses, Cash
@@ -104,6 +105,9 @@ for rows in accounts:
         print("Failed to Find: " + rows[0])
         
               
+cash_change = cash - float(last_stats[0])
+debt_change = debt - float(last_stats[1])
+
 
 worksheet.write('D1', currentDate(), title_format)
 worksheet.write('E1', RETIREDATE, title_format)    
@@ -113,6 +117,11 @@ worksheet.write('H6', debt, dollar_format)
 worksheet.write('H7', income, dollar_format)
 worksheet.write('H8', expense, dollar_format)
 worksheet.write('E2', 500000, dollar_format)
+worksheet.write('K5', cash_change, dollar_format)
+worksheet.write('K6', debt_change, dollar_format)
+
+
+fileIO.writeLog(str(cash) + "\n" + str(debt) + "\n")
 
 
 rowNumber = 4 
