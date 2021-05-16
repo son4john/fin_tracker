@@ -8,3 +8,14 @@ Cancelled Hulu and now going with ATT check charged to Discover Card
 Cancelled Spotify account
 Reformat the individual accounts displayed
 Verify totals a couple of times
+
+Google Cloud Platform API
+Go to google cloud API
+create a project
+ADD API: Google Drive, Google Sheets
+Add credentials Service Accounts
+	Email address
+	Role Editor
+	Than Manage Service Accounts
+	Create a Key
+	download Json file
