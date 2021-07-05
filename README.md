@@ -2,6 +2,8 @@
 Finanical Tracker - Actively development
 Each financial report flush out the report more
 
+You need the JSON file get from another copy of the program.
+
 To Do
 Associate the items that don't have a if statement with a statement
 Cancelled Hulu and now going with ATT check charged to Discover Card
