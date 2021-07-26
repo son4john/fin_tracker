@@ -11,7 +11,7 @@ data = sheets.Sheet1()
 
 cash = float(data[0][1]) + float(data[1][1]) + float(data[5][1])
 debt = float(data[2][1]) + float(data[6][1]) + float(data[7][1])  + float(data[8][1]) + float(data[9][1])
-invst = float(data[3][1]) + float(data[4][1])
+invst = float(data[3][1]) + float(data[4][1]) + float(data[11][1]) + float(data[12][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1]) + float(data[17][1])
 tExpense = float(data[2][1])
 jExpense = float(data[6][1])
 
