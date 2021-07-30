@@ -27,6 +27,8 @@ note_format = workbook.add_format({'font_size': 12})
 percent_format = workbook.add_format({'num_format': '0.00%'})
 worksheet.set_column(0,0,30)
 worksheet.set_column(1,1,20)
+worksheet.set_column(3,3,30)
+worksheet.set_column(4,4,20)
 
 #Titles
 worksheet.write('A1', 'Overview', title_format)
@@ -36,6 +38,8 @@ worksheet.write('A4', 'DEBT', subtitle_format)
 worksheet.write('B4', debt, dollar_format)
 worksheet.write('A5', 'INVESTMENTS', subtitle_format)
 worksheet.write('B5', invst, dollar_format)
+worksheet.write('D5', 'GOAL', subtitle_format)
+worksheet.write('E5', invst - float(data[18][1]), dollar_format)
 
 worksheet.write('A7', 'Spending', title_format)
 worksheet.write('A9', 'JO Spending', subtitle_format)
