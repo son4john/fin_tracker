@@ -10,7 +10,7 @@ import sheets
 data = sheets.Sheet1()
 
 cash = float(data[0][1]) + float(data[1][1]) + float(data[5][1])
-debt = float(data[2][1]) + float(data[6][1]) + float(data[7][1])  + float(data[8][1]) + float(data[9][1])
+debt = float(data[2][1]) + float(data[6][1]) + float(data[7][1])  + float(data[8][1]) + float(data[9][1])+ float(data[10][1])
 invst = float(data[3][1]) + float(data[4][1]) + float(data[11][1]) + float(data[12][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1]) + float(data[17][1])
 tExpense = float(data[2][1])
 jExpense = float(data[6][1])
@@ -24,6 +24,7 @@ dollar_format = workbook.add_format({'num_format': '$#,##0.00'})
 title_format = workbook.add_format({'bold': True, 'font_size': 18})
 subtitle_format = workbook.add_format({'italic': True, 'font_size': 13})
 note_format = workbook.add_format({'font_size': 12})
+percent_format = workbook.add_format({'num_format': '0.00%'})
 worksheet.set_column(0,0,30)
 worksheet.set_column(1,1,20)
 
@@ -36,13 +37,28 @@ worksheet.write('B4', debt, dollar_format)
 worksheet.write('A5', 'INVESTMENTS', subtitle_format)
 worksheet.write('B5', invst, dollar_format)
 
-worksheet.write('A7', 'Goals', title_format)
+worksheet.write('A7', 'Spending', title_format)
 worksheet.write('A9', 'JO Spending', subtitle_format)
 worksheet.write('B9', jExpense + 500, dollar_format)
 worksheet.write('C9', 'Note: A 500 dollar budget a negative balance means i went over')
 worksheet.write('A10', 'TS Spending', subtitle_format)
 worksheet.write('B10', tExpense + 1500, dollar_format)
 worksheet.write('C10', 'Note: A 1,500 dollar budget a negative balance means i went over')
+
+worksheet.write('A12', 'Debt', title_format)
+worksheet.write('A14', 'Net Debt', subtitle_format)
+worksheet.write('B14', debt + cash, dollar_format)
+worksheet.write('C14', 'Note: Cash plus DEBT')
+
+worksheet.write('A15', 'Total Value', subtitle_format)
+worksheet.write('B15', debt + cash + invst, dollar_format)
+worksheet.write('C15', 'Note: Cash plus Debt plus Invst')
+
+worksheet.write('A16', 'Debt to Asset', subtitle_format)
+worksheet.write('B16', (debt*-1) / (cash + invst),percent_format)
+worksheet.write('C16', 'Note: Debt to cash plus assets ratio')
+
+
 
 workbook.close()
 
