@@ -9,11 +9,24 @@ import sheets
 
 data = sheets.Sheet1()
 
-cash = float(data[0][1]) + float(data[1][1]) + float(data[5][1])
-debt = float(data[2][1]) + float(data[6][1]) + float(data[7][1])  + float(data[8][1]) + float(data[9][1])+ float(data[10][1])
-invst = float(data[3][1]) + float(data[4][1]) + float(data[11][1]) + float(data[12][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1]) + float(data[17][1])
-tExpense = float(data[2][1])
-jExpense = float(data[6][1])
+#CASH
+if (data[0][0] == "BOAS" and data[1][0] == "BOAD" and data[7][0]== "DSCD"):
+    cash = float(data[0][1]) + float(data[1][1]) + float(data[7][1])
+else:
+    cash = 0.0
+#DEBT
+if (data[5][0] == "BOAC" and data[8][0] == "DSCC" and data[11][0] == "REMT" and data[12][0] == "WFMT" and data[9][0] == "BBYC"):
+    debt = float(data[5][1]) + float(data[8][1]) + float(data[11][1])  + float(data[12][1]) + float(data[9][1])
+else:
+    cash = 0.0
+#INVESTMENTS
+if (data[3][0] == "EDGE" and data[6][0] == "RHOD" and data[13][0] == "CBCT" and data[14][0] == "UPCT" and data[15][0] == "NOKA" and data[16][0] == "BAYL" and data[17][0] == "TIAA"):
+    invst = float(data[3][1]) + float(data[6][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1]) + float(data[17][1])
+else:
+    invst = 0.0
+#SPENDING
+RentPayment = float(data[4][1])
+montlhlySpending = float(data[2][1])
 
 #Create Output File
 workbook = xlsxwriter.Workbook("FREPORT_" + currentDate() + ".xlsx")
@@ -41,13 +54,13 @@ worksheet.write('B5', invst, dollar_format)
 worksheet.write('D5', 'GOAL', subtitle_format)
 worksheet.write('E5', invst - float(data[18][1]), dollar_format)
 
-worksheet.write('A7', 'Spending', title_format)
-worksheet.write('A9', 'JO Spending', subtitle_format)
-worksheet.write('B9', jExpense + 500, dollar_format)
-worksheet.write('C9', 'Note: A 500 dollar budget a negative balance means i went over')
-worksheet.write('A10', 'TS Spending', subtitle_format)
-worksheet.write('B10', tExpense + 1500, dollar_format)
-worksheet.write('C10', 'Note: A 1,500 dollar budget a negative balance means i went over')
+worksheet.write('A7', 'Other', title_format)
+worksheet.write('A9', 'Family Spending', subtitle_format)
+worksheet.write('B9', montlhlySpending + 8000, dollar_format)
+worksheet.write('C9', 'Note: A 8000 dollar budget a negative balance means i went over.')
+worksheet.write('A10', 'Tenant Balance', subtitle_format)
+worksheet.write('B10', RentPayment, dollar_format)
+worksheet.write('C10', 'Note: The Amount of Money owed for the rental home.')
 
 worksheet.write('A12', 'Debt', title_format)
 worksheet.write('A14', 'Net Debt', subtitle_format)
