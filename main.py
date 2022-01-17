@@ -10,22 +10,25 @@ import sheets
 data = sheets.Sheet1()
 
 #CASH
-if (data[0][0] == "BOAS" and data[1][0] == "BOAD" and data[7][0]== "DSCD"):
-    cash = float(data[0][1]) + float(data[1][1]) + float(data[7][1])
+if (data[0][0] == "BOAS" and data[1][0] == "BOAD" and data[6][0]== "DSCD"):
+    cash = float(data[0][1]) + float(data[1][1]) + float(data[6][1])
 else:
+    print("Error In Cash Setup")
     cash = 0.0
 #DEBT
-if (data[5][0] == "BOAC" and data[8][0] == "DSCC" and data[11][0] == "REMT" and data[12][0] == "WFMT" and data[9][0] == "BBYC"):
-    debt = float(data[5][1]) + float(data[8][1]) + float(data[11][1])  + float(data[12][1]) + float(data[9][1])
+if (data[4][0] == "BOAC" and data[7][0] == "DSCC" and data[10][0] == "REMT" and data[11][0] == "WFMT" and data[8][0] == "BBYC"):
+    debt = float(data[4][1]) + float(data[7][1]) + float(data[10][1])  + float(data[11][1]) + float(data[8][1])
 else:
-    cash = 0.0
+    print("Error In Debt Setup")
+    debt = 0.0
 #INVESTMENTS
-if (data[3][0] == "EDGE" and data[6][0] == "RHOD" and data[13][0] == "CBCT" and data[14][0] == "UPCT" and data[15][0] == "NOKA" and data[16][0] == "BAYL" and data[17][0] == "TIAA"):
-    invst = float(data[3][1]) + float(data[6][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1]) + float(data[17][1])
+if (data[3][0] == "EDGE" and data[5][0] == "RHOD" and data[12][0] == "CBCT" and data[13][0] == "UPCT" and data[14][0] == "NOKA" and data[15][0] == "BAYL" and data[16][0] == "TIAA"):
+    invst = float(data[3][1]) + float(data[5][1]) + float(data[12][1]) + float(data[13][1]) + float(data[14][1]) + float(data[15][1]) + float(data[16][1])
 else:
+    print("Error In Investment Setup")
     invst = 0.0
 #SPENDING
-RentPayment = float(data[4][1])
+RentPayment = 1700.0
 montlhlySpending = float(data[2][1])
 
 #Create Output File
