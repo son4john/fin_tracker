@@ -1,0 +1,14 @@
+BOAChecking:
+  name: Bank Of America Checking Account
+  amount: 10.01
+  note: General Purpose Account
+
+BOASavings:
+  name: Bank Of America Savings Account
+  amount: 1.00
+  note: fly fishing
+
+BOACredit:
+  name: Bank Of America Credit Account
+  amount: -4.05
+  note: Spending

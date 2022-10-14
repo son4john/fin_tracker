@@ -1,4 +1,10 @@
 # fin_tracker
+
+Create Account Instance
+Create dictonary of names
+Pickle the account instance - https://pythonexamples.org/python-pickle-class-object/#:~:text=You%20can%20pickle%20a%20custom,pickle%20a%20python%20class%20object.
+
+
 Finanical Tracker - Actively development
 Each financial report flush out the report more
 
